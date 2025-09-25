@@ -36,7 +36,7 @@ It leverages advanced techniques to provide actionable insights, making it suita
     ![Feature Importance](images/Feature_importance.png)
 
   - **LIME** (local interpretability)  
-    ![LIME](images/lime.jpg)
+    ![LIME](images/Lime.JPG)
 
 ### Key Results
 - High precision and recall for classifying defaults.
