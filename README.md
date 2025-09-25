@@ -33,10 +33,10 @@ It leverages advanced techniques to provide actionable insights, making it suita
   - KS Statistic: 86.87%
 - **Interpretability Tools**:
   - **SHAP** (feature importance)  
-    ![Feature Importance](images/feature_importance.png)
+    ![Feature Importance](images/Feature_Importance.png)
 
   - **LIME** (local interpretability)  
-    ![LIME](images/lime.png)
+    ![LIME](images/lime.jpg)
 
 ### Key Results
 - High precision and recall for classifying defaults.
