@@ -6,7 +6,7 @@ Credit risk modeling is essential for financial institutions to assess the likel
 This project provides a **credit risk assessment system powered by machine learning**. It evaluates borrowers' default risk, calculates credit scores, and assigns credit ratings.  
 
 The project is built using **Python** and **Streamlit**, offering an interactive and user-friendly dashboard.
-
+[**Web Link**](https://optirecourse-24jainrj.streamlit.app/)
 ---
 
 ## 🔍 Default Risk Prediction: Model Evaluation and Deployment
