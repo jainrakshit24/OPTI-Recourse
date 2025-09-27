@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Enhanced Credit Risk Modeling Application - Beautiful Boxy Minimal Version
-@author: Admin
-"""
+
 
 import streamlit as st
 from utils import predict
