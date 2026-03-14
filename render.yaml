@@ -7,8 +7,9 @@ services:
     dockerfilePath: Dockerfile.django
     plan: free
     region: singapore # Choose the region closest to you
-    port: 8000
     envVars:
+      - key: PORT
+        value: "8000"
       - key: ALLOWED_HOSTS
         value: "*"
       - key: DEBUG
@@ -24,8 +25,9 @@ services:
     dockerfilePath: Dockerfile.streamlit
     plan: free
     region: singapore
-    port: 8501
     envVars:
+      - key: PORT
+        value: "8501"
       - key: API_BASE_URL
         value: http://opti-backend:8000/api
       - key: STREAMLIT_SERVER_PORT
