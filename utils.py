@@ -9,12 +9,25 @@ import os
 # Load model and associated data using absolute path
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(BASE_DIR, "model", "model_data.pkl")
-model_data = joblib.load(model_path)
 
-model = model_data['model']
-scaler = model_data['scaler']
-features = model_data['features']
-columns_to_scale = model_data['cols_to_scale']
+print(f"DEBUG: Attempting to load model from {model_path}")
+
+try:
+    if not os.path.exists(model_path):
+        # Alternative path for different container structures
+        model_path = os.path.join(BASE_DIR, "backend", "model", "model_data.pkl")
+        print(f"DEBUG: Trying alternative path: {model_path}")
+        
+    model_data = joblib.load(model_path)
+    model = model_data['model']
+    scaler = model_data['scaler']
+    features = model_data['features']
+    columns_to_scale = model_data['cols_to_scale']
+    print("DEBUG: Model loaded successfully.")
+except Exception as e:
+    print(f"CRITICAL ERROR loading model: {str(e)}")
+    # Provide dummy variables to prevent immediate crash on import
+    model = scaler = features = columns_to_scale = None
 
 # Initialize SHAP explainer
 explainer = shap.Explainer(model)
