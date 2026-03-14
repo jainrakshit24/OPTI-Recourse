@@ -1,0 +1,31 @@
+services:
+  # Django Backend Service
+  - type: web
+    name: opti-backend
+    runtime: docker
+    dockerContext: .
+    dockerfilePath: Dockerfile.django
+    plan: free # Change to 'starter' or higher for production
+    envVars:
+      - key: ALLOWED_HOSTS
+        value: "*"
+      - key: DEBUG
+        value: "False"
+      - key: PYTHONUNBUFFERED
+        value: "1"
+
+  # Streamlit Frontend Service
+  - type: web
+    name: opti-frontend
+    runtime: docker
+    dockerContext: .
+    dockerfilePath: Dockerfile.streamlit
+    plan: free
+    envVars:
+      - key: API_BASE_URL
+        # Render internal URL for the backend service
+        value: http://opti-backend:8000/api
+      - key: STREAMLIT_SERVER_PORT
+        value: "8501"
+      - key: STREAMLIT_SERVER_ADDRESS
+        value: "0.0.0.0"
