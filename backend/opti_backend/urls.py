@@ -16,8 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import JsonResponse
+
+def heartbeat(request):
+    return JsonResponse({"status": "alive", "message": "OPTI-Recourse Backend is running"})
 
 urlpatterns = [
+    path('', heartbeat),
     path('admin/', admin.site.urls),
     path('api/', include('credit_risk.urls')),
 ]

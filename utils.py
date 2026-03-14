@@ -29,8 +29,19 @@ except Exception as e:
     # Provide dummy variables to prevent immediate crash on import
     model = scaler = features = columns_to_scale = None
 
-# Initialize SHAP explainer
-explainer = shap.Explainer(model)
+# Initialize SHAP explainer lazily
+explainer = None
+
+def get_explainer():
+    global explainer
+    if explainer is None and model is not None:
+        try:
+            print("DEBUG: Initializing SHAP explainer...")
+            explainer = shap.Explainer(model)
+            print("DEBUG: SHAP explainer initialized.")
+        except Exception as e:
+            print(f"ERROR initializing SHAP explainer: {str(e)}")
+    return explainer
 
 def data_preparation(age, avg_dpd_per_dm, credit_utilization_ratio, dmtlm, income, 
                      loan_amount, loan_tenure_months, total_loan_months, 
@@ -77,7 +88,10 @@ def calculate_credit_score(input_df, base_score=300, scale_length=600):
     return float(default_probability), int(credit_score), rating
 
 def get_shap_explanations(input_df):
-    shap_values = explainer(input_df)
+    exp = get_explainer()
+    if exp is None:
+        return [("Error", "Model not loaded")]
+    shap_values = exp(input_df)
     vals = shap_values.values[0]
     explanations = dict(zip(features, vals))
     sorted_explanations = sorted(explanations.items(), key=lambda x: abs(x[1]), reverse=True)
