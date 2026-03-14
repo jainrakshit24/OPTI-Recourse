@@ -5,7 +5,9 @@ services:
     runtime: docker
     dockerContext: .
     dockerfilePath: Dockerfile.django
-    plan: free # Change to 'starter' or higher for production
+    plan: free
+    region: singapore # Choose the region closest to you
+    port: 8000
     envVars:
       - key: ALLOWED_HOSTS
         value: "*"
@@ -21,9 +23,10 @@ services:
     dockerContext: .
     dockerfilePath: Dockerfile.streamlit
     plan: free
+    region: singapore
+    port: 8501
     envVars:
       - key: API_BASE_URL
-        # Render internal URL for the backend service
         value: http://opti-backend:8000/api
       - key: STREAMLIT_SERVER_PORT
         value: "8501"
