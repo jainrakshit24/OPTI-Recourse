@@ -1,6 +1,18 @@
 services:
-  app:
-    build: .
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile.django
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    restart: always
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
     ports:
       - "8501:8501"
     volumes:
@@ -8,4 +20,7 @@ services:
     environment:
       - STREAMLIT_SERVER_PORT=8501
       - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+      - API_BASE_URL=http://django:8000/api
+    depends_on:
+      - django
     restart: always
