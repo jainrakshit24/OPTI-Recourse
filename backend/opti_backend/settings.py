@@ -20,6 +20,9 @@ import os
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-key-for-dev-only')
+
 ALLOWED_HOSTS = ['*']
 render_host = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if render_host:
