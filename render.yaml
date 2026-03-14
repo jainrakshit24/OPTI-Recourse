@@ -29,7 +29,7 @@ services:
       - key: PORT
         value: "8501"
       - key: API_BASE_URL
-        value: http://opti-backend:8000/api
+        value: https://opti-backend-i8mu.onrender.com/api
       - key: STREAMLIT_SERVER_PORT
         value: "8501"
       - key: STREAMLIT_SERVER_ADDRESS
