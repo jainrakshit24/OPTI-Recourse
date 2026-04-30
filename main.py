@@ -9,6 +9,13 @@ import plotly.graph_objects as ob
 from utils import predict
 import shap
 
+# Set the page configuration
+st.set_page_config(
+    page_title="OPTI-RECOURSE PRO", 
+    page_icon="🚀", 
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 # API URL
 API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000/api")
